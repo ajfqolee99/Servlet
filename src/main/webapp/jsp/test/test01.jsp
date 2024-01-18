@@ -18,7 +18,8 @@
 		for(int i = 0; i < scores.length; i++) {
 			sum += scores[i];
 		}
-		avg = sum / scores.length;
+		// sum, scores.length 둘다 정수이기 때문에 형변환 필요
+		avg = (double)sum / scores.length;
 	%>
 	<h3>점수 평균은 <%= avg %> 입니다.</h3>
 	
@@ -31,15 +32,23 @@
 				sum += 10;
 			}
 		}
+		
+		// 선생님 해설
+		//int score = 0;
+		//for(String answer:scoreList) {
+		//	if(answer.equals("O")) {
+		//		score += 10;
+		//	}
+		//}
 	%>
 	<h3>채점결과는 <%= sum %>점 입니다.</h3>
 	
 	<h1>3. 1부터 n까지의 합계를 구하는 함수</h1>
 	<%!
-		public Integer getSum(int number) {
+		public int getSum(int number) {
 			int sum = 0;
 			for(int i = 1; i <= number; i++) {
-				sum += number;
+				sum += i;
 			}
 			return sum;
 		}
@@ -52,7 +61,7 @@
 		int year = Integer.parseInt(birthDay.substring(0, 4));
 		int age = 2024 - year + 1;
 	%>
-	<h3>20010820의 나이는 <%= age %>살 입니다.</h3>
+	<h3><%= birthDay %>의 나이는 <%= age %>살 입니다.</h3>
 	
 </body>
 </html>
