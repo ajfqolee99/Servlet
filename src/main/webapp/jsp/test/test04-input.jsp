@@ -14,10 +14,10 @@
 			<h1>사칙연산</h1>
 			<input type="text" name="number1">
 			<select name="calc">
-				<option value="plus">+</option>
-				<option value="minus">-</option>
-				<option value="multi">X</option>
-				<option value="div">/</option>
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="X">X</option>
+				<option value="/">/</option>
 			</select>
 			<input type="text" name="number2">
 			<button type="submit">계산</button>

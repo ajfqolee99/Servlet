@@ -14,8 +14,8 @@
 	<%
         // 선생님 해설
         Date now = new Date();
-		SimpleDateFormat = dateFormatter = new SimpleDateFormat("yyyy년 M월 d일");
-		SimpleDateFormat = timeFormatter = new SimpleDateFormat("HH시 mm분 ss초");
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy년 M월 d일");
+		SimpleDateFormat timeFormatter = new SimpleDateFormat("HH시 mm분 ss초");
         
         String dateString = "오늘 날짜" + dateFormatter.format(now);
         String timeString = "현재 시간" + timeFormatter.format(now);
