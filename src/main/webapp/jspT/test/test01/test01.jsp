@@ -50,22 +50,13 @@
 	    map = new HashMap<String, String>() {{ put("ch", "121"); put("name", "KBSN 스포츠"); put("category", "스포츠"); } };
 	    list.add(map);
 	    
+	    String category = request.getParameter("category");
+	    
 	%>
 		
 	<div id="wrap">
-		<header class="d-flex justify-content-center align-items-center">
-			<h1 class="text-danger">Sk broadband IPTV</h1>
-		</header>
-		<nav class="main-menu bg-danger">
-			<ul class="nav nav-fill w-100">
-				<li class="nav-item"><a class="nav-link text-white" href="#">전체</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="#">지상파</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="#">드라마</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="#">예능</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="#">영화</a></li>
-				<li class="nav-item"><a class="nav-link text-white" href="#">스포츠</a></li>
-			</ul>
-		</nav>
+		<jsp:include page="header.jsp" />
+		<jsp:include page="menu.jsp" />
 		<section class="contents">
 			<table class="table text-center">
 				<thead>
@@ -76,21 +67,22 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for(Map<String, String> result:list) { %>
+					<% for(Map<String, String> channel:list) { 
+						String categoryStr = (String)channel.get("category");
+						// category == null가 앞에 있어야 에러발생 안함.
+						// 앞 조건이 참이면 뒤에 조건을 보지않고 실행
+						if(category == null || categoryStr.equals(category)) {
+					%>
 					<tr>
-						<td><%= result.get("ch") %></td>
-						<td><%= result.get("name") %></td>
-						<td><%= result.get("category") %></td>
+						<td><%= channel.get("ch") %></td>
+						<td><%= channel.get("name") %></td>
+						<td><%= channel.get("category") %></td>
 					</tr>
-					<% } %>
+					<% }} %>
 				</tbody>
 			</table>
 		</section>
-		<footer class="text-center">
-			<div>
-				Copyright 2021.marondal All Rights Reserved.
-			</div>
-		</footer>
+		<jsp:include page="footer.jsp" />
 	</div>
 	
 	
