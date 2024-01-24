@@ -4,23 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>검색</title>
+<title>마룬달</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
+<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-	
-	<div class="container">
-		<h3>메뉴검색</h3>
-		<div class="d-flex">
-			<form method="get" action="/jsp/test/test07.jsp">
-				<input type="text" name="search" class="form-control col-4">
-				<!-- value를 지정하지 않고 체크 되었을때 : on, 안되었을때 null -->
-				<label><input type="checkbox" name="option">4점 이하 제외</label>
-				<button type="submit" class="btn btn-success">검색</button>
-			</form>
-		</div>
+		
+	<div id="wrap">
+		<jsp:include page="header.jsp" />
+		<jsp:include page="menu.jsp" />
+		<section class="contents">
+			<img class="w-100" alt="치타" src="https://cdn.pixabay.com/photo/2023/09/09/09/03/cheetah-8242729_640.png">
+			<h3>치타 사진</h3>
+		</section>
+		<jsp:include page="footer.jsp" />
 	</div>
+	
 	
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

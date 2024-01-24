@@ -14,6 +14,7 @@
 	<%
 	
 		String search = request.getParameter("search");
+		String option = request.getParameter("option");
 		
 		// String, Object 데이터 타입으로 지정한 이유는 name, menu는 String이고, point는 실수이기 때문에 모든 타입의 부모인 Object로 지정
 		List<Map<String, Object>> list = new ArrayList<>();
@@ -33,7 +34,6 @@
 	    list.add(map);
 	%>
 	
-	
 	<div class="container">
 		<h1 class="text-center">검색 결과</h1>
 		<table class="table text-center">
@@ -51,14 +51,27 @@
 					// 업캐스팅으로 저장된 타입을 다운캐스팅한다.
 					// 저장된 값이 String인지 명확히 증명된 후에 다운캐스팅 한다.
 					String menu = (String)listMap.get("menu");
+					
+					// 메뉴 조건
 					if(search.equals(menu)) {
+						
+						double point = (Double)listMap.get("point");
+						// 가게정보를 tr태그로 포함시키는 조건
+						
+						// option이 null 일때
+						// option이 on이고, point가 4.0 이상인경우
+						if(option == null || (option.equals("on") && point >= 4.0)) {
+						
 				%>
 				<tr>
 					<td><%= listMap.get("menu") %></td>
 					<td><%= listMap.get("name") %></td>
 					<td><%= listMap.get("point") %></td>
 				</tr>
-				<% }} %>
+				<% 
+						}
+					}
+					} %>
 	
 			</tbody>
 	
