@@ -12,9 +12,8 @@
 <body>
 
 	<%
-	
 		// 아티스트 정보 
-	
+		
 	    Map<String, Object> artistInfo = new HashMap<>();
 	    artistInfo.put("name", "아이유");
 	    artistInfo.put("debute", 2008);
@@ -91,51 +90,57 @@
 	    musicInfo.put("lyricist", "아이유");
 	    musicList.add(musicInfo);
 	
-	
+	    String idString = request.getParameter("id");
+	    String title = request.getParameter("title");
+		
+	    for(Map<String, Object> list:musicList) {
+			int id = Integer.parseInt(idString);
+			int time = (Integer)list.get("time");
+			int songId = (Integer)list.get("id");
+			String titleStr = (String)list.get("title");
+			if((idString != null && id == songId) || (title != null && title.equals(titleStr))) {
+		
+	    
 	%>
 	
 	<div id="wrap" class="container">
 		<jsp:include page="header.jsp" />
 		<jsp:include page="menu.jsp" />
-		<section class="contents">
-			<div class="artist border border-success d-flex p-3">
-				<div class="image">
-					<img width="150" src="<%= artistInfo.get("photo") %>">
+		<section>
+			<div class="song mt-3">
+				<%%>
+				<h3>곡 정보</h3>
+				<div class="info border border-success d-flex p-3">
+					<div class="image">
+						<img width="200" src="<%= list.get("thumbnail")%>">
+					</div>
+					<div class="ml-3">
+						<div class="display-4"><%= list.get("title") %></div>
+						<div class="text-success mt-1"><%=list.get("singer") %></div>
+						<div class="small text-secondary mt-2">
+							<div>앨범 : <%=list.get("album") %></div>
+							<div>재생시간 : <%= time / 60 %> : <%= time % 60 %></div>
+							<div>작곡가 : <%=list.get("composer") %></div>
+							<div>작사가 : <%= list.get("lyricist") %></div>
+						</div>
+					</div>
 				</div>
-				<div class="ml-3">
-					<div class="mt-1"><h5><%=artistInfo.get("name") %></h5></div>
-					<div><%= artistInfo.get("agency") %></div>
-					<div><%= artistInfo.get("debute") %> 데뷔</div>
-				</div>
+				<% } } %>
 			</div>
-			<div class="song-list">
-				<h5 class="mt-2">곡 목록</h5>
-				<table class="table table-sm text-center">
-					<thead>
-						<tr>
-							<th>no</th>
-							<th>제목</th>
-							<th>앨범</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% for(Map<String, Object> list:musicList) {%>
-						<tr>
-							<td><%= list.get("id") %></td>
-							<td><a href="/jspT/test/test02/detail.jsp?id=<%= list.get("id")%>"><%= list.get("title") %></a></td>
-							<td><%= list.get("album") %></td>
-						</tr>
-						<% } %>
-					</tbody>
-				</table>
+			
+			<div class="my-4">
+				<h3>가사</h3>
+				<hr>
+				<div>가사 정보 없음</div>
+				
 			</div>
 		</section>
 		<jsp:include page="footer.jsp" />
 	</div>
-	
+
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-	
+
 </body>
 </html>
