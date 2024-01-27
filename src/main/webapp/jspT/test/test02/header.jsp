@@ -6,8 +6,8 @@
 			</div>
 	        <div class="search d-flex align-items-center">
 	        
-	        	<form method="get" action="/jspT/test/test02/detail.jsp">
-					<div class="input-group col-10">
+	        	<form method="get" action="/jspT/test/test02/detail.jsp" class=" col-5">
+					<div class="input-group">
 						<input type="text" class="form-control" name="title">
 			            <div class="input-group-append ">
 			           		<button class="btn btn-success" type="submit">검색</button>

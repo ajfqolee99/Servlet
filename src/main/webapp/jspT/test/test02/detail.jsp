@@ -93,13 +93,29 @@
 	    String idString = request.getParameter("id");
 	    String title = request.getParameter("title");
 		
-	    for(Map<String, Object> list:musicList) {
-			int id = Integer.parseInt(idString);
-			int time = (Integer)list.get("time");
-			int songId = (Integer)list.get("id");
-			String titleStr = (String)list.get("title");
-			if((idString != null && id == songId) || (title != null && title.equals(titleStr))) {
-		
+	    // 반복문이 끝나도 반복문안에서 뽑아내고 싶은 값을 저장할 Map(객체) 선언
+	    Map<String, Object> target = null;
+	    for(Map<String, Object> music:musicList) {
+	    	// id가 전달이 되면 일치하는 id의 노래 정보
+	    	if(idString != null) {
+	    		int id = Integer.parseInt(idString);
+	    		int musicId = (Integer)music.get("id");
+	    		
+	    		if(id == musicId) {
+	    			// 보여줘야 될 음악 정보의 Map이 target에 저장됨
+	    			target = music;
+	    			break;
+	    		}
+	    	} else {	// title이 전달되면 일치하는 노래 정보
+	    		if(title.equals(music.get("title"))) {
+	    			target = music;
+	    			break;
+	    		}
+	    	}
+
+	    }
+	    
+	    int time = (Integer)target.get("time");
 	    
 	%>
 	
@@ -112,20 +128,19 @@
 				<h3>곡 정보</h3>
 				<div class="info border border-success d-flex p-3">
 					<div class="image">
-						<img width="200" src="<%= list.get("thumbnail")%>">
+						<img width="200" src="<%= target.get("thumbnail")%>">
 					</div>
 					<div class="ml-3">
-						<div class="display-4"><%= list.get("title") %></div>
-						<div class="text-success mt-1"><%=list.get("singer") %></div>
+						<div class="display-4"><%= target.get("title") %></div>
+						<div class="text-success mt-1"><%=target.get("singer") %></div>
 						<div class="small text-secondary mt-2">
-							<div>앨범 : <%=list.get("album") %></div>
+							<div>앨범 : <%=target.get("album") %></div>
 							<div>재생시간 : <%= time / 60 %> : <%= time % 60 %></div>
-							<div>작곡가 : <%=list.get("composer") %></div>
-							<div>작사가 : <%= list.get("lyricist") %></div>
+							<div>작곡가 : <%=target.get("composer") %></div>
+							<div>작사가 : <%= target.get("lyricist") %></div>
 						</div>
 					</div>
 				</div>
-				<% } } %>
 			</div>
 			
 			<div class="my-4">
