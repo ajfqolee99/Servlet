@@ -14,10 +14,10 @@
 		<h3>즐겨찾기 추가</h3>
 		<form method="get" action="/database/site/insert">
 			<label>사이트명 : </label> <br>
-			<input type="text" name="name"> <br>
+			<input type="text" name="name" class="form-control col-4"> <br>
 			<label>사이트주소 : </label> <br>
-			<input type="text" name="url"> <br>
-			<button type="submit" class="form-control btn-info col-2">추가</button>
+			<input type="text" name="url" class="form-control col-4"> <br>
+			<button type="submit" class="btn-info btn">추가</button>
 		</form>
 	</div>
 	

@@ -19,7 +19,7 @@
 		mysqlService.connect();
 		
 		// 조회한 결과를 한 행씩 가지고 있음.
-		ResultSet resultSet = mysqlService.select("SELECT `name`, `url` FROM `site` ORDER BY `id` DESC;");
+		ResultSet resultSet = mysqlService.select("SELECT `id`, `name`, `url` FROM `site` ORDER BY `id` DESC;");
 	
 	%>
 	
@@ -29,19 +29,20 @@
 				<tr>
 					<th>사이트명</th>
 					<th>사이트 주소</th>
-					<th>사이트 삭제</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<% while(resultSet.next()) { %>
 				<tr>
 					<td><%= resultSet.getString("name") %></td>
-					<td><a href="<%= resultSet.getString("url") %>"><%= resultSet.getString("url") %></a></td>
-					<td><a href="<%= resultSet.getString("url_del") %>"><%= resultSet.getString("url_del") %></a></td>
+					<td><a target="_blank" href="<%= resultSet.getString("url") %>"><%= resultSet.getString("url") %></a></td>
+					<td><a class="btn btn-danger" href="/database/site/delete?id=<%= resultSet.getInt("id") %>">삭제</a></td>
 				</tr>
 				<% } %>
 			</tbody>
 		</table>
+		<a href="/database/site-input.jsp">즐겨찾기 추가</a>
 	</div>
 	
 

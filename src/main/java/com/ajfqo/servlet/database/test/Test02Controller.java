@@ -22,11 +22,10 @@ public class Test02Controller extends HttpServlet{
 		MysqlService mysqlservice = MysqlService.getInstance();
 		mysqlservice.connect();
 		
-		String query= "INSERT INTO `site` \r\n"
+		mysqlservice.update("INSERT INTO `site` \r\n"
 				+ "(`name`, `url`)\r\n"
 				+ "VALUES \r\n"
-				+ "('" + name + "', '" + url + "');";
-		int count = mysqlservice.update(query);
+				+ "('" + name + "', '" + url + "');");
 		
 		// 전달받은 파라미터로 테이블에 데이터가 인서트되면 조회된 결과를 볼수있는 페이지로 이동
 		response.sendRedirect("/database/site-list.jsp");
